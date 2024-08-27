@@ -1,0 +1,20 @@
+
+pipeline{
+    agent any
+
+    environment{
+        PATH = "/OPT/maven3/bin:$Path" 
+    }  
+    stages{
+        stage("git checkout"){
+            steps{
+                git branch: 'main', url: 'https://github.com/Harish7785/Devops-Project.git'
+            }
+        }
+        stages("Maven build"){
+          steps{
+              sh "mvn package"
+          } 
+        }  
+    }
+}
